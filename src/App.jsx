@@ -2,11 +2,11 @@ import React from "react";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout";
-import Contact from "./component/Contact";
-import Home from "./component/Home";
-import About from "./component/About";
-import Services from "./component/Services";
-import PrivacyPolicy from "./component/PrivacyPolicy";
+import Contact from "./component/Contact/Contact";
+import Home from "./component/Home/Home";
+import About from "./component/About/About";
+import Services from "./component/Services/Services";
+import PrivacyPolicy from "./component/PrivacyPolicy/PrivacyPolicy";
 
 const router = createBrowserRouter([
   {

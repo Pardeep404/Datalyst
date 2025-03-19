@@ -7,7 +7,7 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Footer() {
   return (
@@ -27,24 +27,52 @@ function Footer() {
             <h2 className="text-xl font-bold">Quick Links</h2>
             <ul className="mt-3 space-y-2 text-gray-600">
               <li>
-                <Link to="/about" className="hover:text-blue-600">
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    `hover:text-blue-600 ${
+                      isActive ? "text-orange-700" : "text-gray-700"
+                    }`
+                  }
+                >
                   About Us
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/services" className="hover:text-blue-600">
+                <NavLink
+                  to="/services"
+                  className={({ isActive }) =>
+                    `hover:text-blue-600 ${
+                      isActive ? "text-orange-700" : "text-gray-700"
+                    }`
+                  }
+                >
                   Services
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-blue-600">
+                <NavLink
+                  to="/contact"
+                  className={({ isActive }) =>
+                    `hover:text-blue-600 ${
+                      isActive ? "text-orange-700" : "text-gray-700"
+                    }`
+                  }
+                >
                   Contact
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/privacy" className="hover:text-blue-600">
+                <NavLink
+                  to="/privacy"
+                  className={({ isActive }) =>
+                    `hover:text-blue-600 ${
+                      isActive ? "text-orange-700" : "text-gray-700"
+                    }`
+                  }
+                >
                   Privacy Policy
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
