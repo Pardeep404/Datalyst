@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+import '@fontsource/poppins'; // Defaults to 400 weight
+import '@fontsource/poppins/600.css'; // Specific weight
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout";
 import Contact from "./component/Contact/Contact";

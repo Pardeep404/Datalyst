@@ -3,42 +3,58 @@ import { motion } from "framer-motion";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
+import { FaChartBar, FaUsers, FaTools, FaHandshake } from "react-icons/fa";
+import bgImage from "../../assets/bannerImg1.jpg";
+import bgImage2 from "../../assets/bannerImg2.jpg";
 
 function Home() {
   const testimonials = [
     {
       name: "John Doe",
-      text: "Datalyst transformed how we handle data, making our decision-making process much more effective!",
+      text: "Datalyst transformed how we handle data!",
+      img: "https://i.pravatar.cc/150?img=1",
     },
     {
       name: "Jane Smith",
-      text: "Their CRM optimization service boosted our efficiency significantly!",
+      text: "CRM optimization boosted our efficiency!",
+      img: "https://i.pravatar.cc/150?img=2",
     },
     {
       name: "David Brown",
-      text: "Amazing data insights that helped us scale our business!",
+      text: "Amazing insights helped us scale!",
+      img: "https://i.pravatar.cc/150?img=3",
     },
     {
       name: "Lisa White",
-      text: "Professional and highly skilled team. A pleasure to work with!",
+      text: "Highly professional team!",
+      img: "https://i.pravatar.cc/150?img=4",
     },
     {
       name: "Michael Johnson",
-      text: "Their expertise in data analysis saved us countless hours!",
+      text: "Expertise in data analysis saved us time!",
+      img: "https://i.pravatar.cc/150?img=5",
     },
     {
       name: "Emily Davis",
-      text: "We saw immediate improvements in our customer engagement!",
+      text: "Immediate improvements in customer engagement!",
+      img: "https://i.pravatar.cc/150?img=6",
     },
     {
       name: "Robert Wilson",
-      text: "Highly recommended for any business looking to improve its CRM!",
+      text: "Highly recommended for CRM!",
+      img: "https://i.pravatar.cc/150?img=7",
     },
     {
       name: "Sophia Miller",
-      text: "A game-changer for our analytics-driven approach!",
+      text: "Game-changer for analytics!",
+      img: "https://i.pravatar.cc/150?img=8",
     },
-    { name: "Daniel Clark", text: "Superb service and excellent support!" },
+    {
+      name: "Daniel Clark",
+      text: "Superb service and support!",
+      img: "https://i.pravatar.cc/150?img=9",
+    },
   ];
 
   const settings = {
@@ -50,14 +66,8 @@ function Home() {
     autoplay: true,
     autoplaySpeed: 5000,
     responsive: [
-      {
-        breakpoint: 1024, // Tablet
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 768, // Mobile
-        settings: { slidesToShow: 1 },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 768, settings: { slidesToShow: 1 } },
     ],
   };
 
@@ -68,32 +78,67 @@ function Home() {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="text-center bg-gray-100 p-10 rounded-lg shadow-md"
+        className="relative text-center p-10 rounded-lg shadow-md bg-cover bg-center  flex justify-center items-center overflow-hidden"
       >
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Empowering Businesses with Data-Driven Insights & CRM Optimization
-        </h1>
-        <p className="text-gray-700 text-lg mb-6">
-          Your trusted partner in structured data analytics and seamless CRM
-          management.
-        </p>
-        <div className="flex justify-center space-x-4">
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+        {/* Blurred Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            filter: "blur(4px)", // Corrected blur syntax
+            zIndex: 0,
+          }}
+        ></div>
+
+        {/* Dark Overlay for Better Contrast */}
+        <div className="absolute inset-0  bg-opacity-50 z-10"></div>
+
+        {/* Content */}
+        <div className="relative z-20 flex flex-col justify-center items-center text-center max-w-6xl">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="text-4xl font-bold text-white mb-4 drop-shadow-xl "
+            style={{ WebkitTextStroke: "1px black" }}
           >
-            Get a Free Consultation
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            className="bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800"
+            Empowering Businesses with Data-Driven Insights & CRM Optimization
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+            className="text-white text-lg mb-6 drop-shadow-md px-4"
           >
-            Explore Our Services
-          </motion.button>
+            Your trusted partner in structured data analytics and seamless CRM
+            management. We provide intelligent solutions to optimize workflows
+            and drive growth.
+          </motion.p>
+
+          {/* Call to Action Buttons */}
+          <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 space-y-4 md:space-y-0">
+            {/* <motion.button
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
+              className="bg-gradient-to-r from-violet-500 via-purple-500 to-orange-400 text-white px-6 py-3 rounded-lg shadow-lg w-full md:w-auto"
+            >
+              Get a Free Consultation
+            </motion.button> */}
+            <Link to={"/services"}>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
+              className="bg-gradient-to-r from-blue-500 via-purple-400 to-indigo-500 text-white px-6 py-3 rounded-lg shadow-lg border-2 border-white w-full md:w-auto"
+            >
+              Explore Our Services
+            </motion.button>
+            </Link>
+          </div>
         </div>
       </motion.div>
 
-      {/* Why Choose Datalyst Section */}
+      {/* Why Choose Datalyst */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -104,30 +149,37 @@ function Home() {
           Why Choose Datalyst?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          <div className="p-4 bg-gray-100 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-blue-600 mb-2">
-              Data-Backed Strategies
-            </h3>
-            <p className="text-gray-700">
-              We help businesses leverage data to make informed decisions.
-            </p>
-          </div>
-          <div className="p-4 bg-gray-100 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-blue-600 mb-2">
-              Expert Analysts
-            </h3>
-            <p className="text-gray-700">
-              Work with industry experts who provide real-world insights.
-            </p>
-          </div>
-          <div className="p-4 bg-gray-100 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-blue-600 mb-2">
-              Custom CRM Solutions
-            </h3>
-            <p className="text-gray-700">
-              Optimize your CRM for better client management and efficiency.
-            </p>
-          </div>
+          {[
+            {
+              icon: FaChartBar,
+              title: "Data-Backed Strategies",
+              desc: "Make informed decisions with data insights.",
+            },
+            {
+              icon: FaUsers,
+              title: "Expert Analysts",
+              desc: "Industry experts providing real-world insights.",
+            },
+            {
+              icon: FaTools,
+              title: "Custom CRM Solutions",
+              desc: "Optimize your CRM for efficiency.",
+            },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: index * 0.2 }}
+            >
+              <item.icon className="text-5xl text-blue-600 mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {item.title}
+              </h3>
+              <p className="text-gray-700">{item.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </motion.div>
 
@@ -142,28 +194,36 @@ function Home() {
           Our Core Offerings
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-6 bg-white rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              DAaaS (Data Analyst as a Service)
-            </h3>
-            <p className="text-gray-700">
-              Deploy expert data analysts to drive business growth through
-              analytics.
-            </p>
-          </div>
-          <div className="p-6 bg-white rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              CRMSync (CRM Setup & Optimization)
-            </h3>
-            <p className="text-gray-700">
-              Optimize your CRM for better data organization and customer
-              tracking.
-            </p>
-          </div>
+          {[
+            {
+              icon: FaHandshake,
+              title: "DAaaS",
+              desc: "Deploy expert analysts for business growth.",
+            },
+            {
+              icon: FaTools,
+              title: "CRMSync",
+              desc: "Optimize your CRM for better customer tracking.",
+            },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: index * 0.3 }}
+            >
+              <item.icon className="text-5xl text-indigo-600 mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {item.title}
+              </h3>
+              <p className="text-gray-700">{item.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </motion.div>
 
-      {/* Testimonials */}
+      {/* Testimonials Section */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -176,7 +236,15 @@ function Home() {
         <Slider {...settings}>
           {testimonials.map((testimonial, index) => (
             <div key={index} className="p-4">
-              <div className="bg-gray-100 p-6 rounded-lg shadow-md text-center">
+              <div className="bg-gray-100 p-6 rounded-lg shadow-md text-center flex flex-col items-center">
+                {/* Testimonial Image */}
+                <img
+                  src={testimonial.img}
+                  alt={testimonial.name}
+                  className="w-20 h-20 rounded-full mb-4"
+                />
+
+                {/* Testimonial Text */}
                 <p className="text-gray-700 italic">"{testimonial.text}"</p>
                 <p className="text-gray-900 font-bold mt-4">
                   - {testimonial.name}
@@ -187,25 +255,47 @@ function Home() {
         </Slider>
       </motion.div>
 
-      {/* Call to Action Section */}
+      {/* Call to Action */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, delay: 2 }}
-        className="mt-16 bg-gradient-to-r from-blue-100 to-indigo-100 text-gray-900 p-8 rounded-lg shadow-lg text-center"
+        className="relative mt-16 p-8 rounded-lg shadow-lg text-center bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${bgImage2})` }}
       >
-        <h2 className="text-3xl font-semibold mb-4">
-          Ready to Transform Your Business?
-        </h2>
-        <p className="text-lg mb-6">
-          Get started with Datalyst today and unlock the power of data.
-        </p>
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700"
-        >
-          Contact Us Now
-        </motion.button>
+        {/* Blurred Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${bgImage2})`,
+            filter: "blur(6px)", // Corrected blur syntax
+            zIndex: 0,
+          }}
+        ></div>
+
+        {/* Overlay for better text visibility */}
+        <div className="absolute inset-0  bg-opacity-50 z-10"></div>
+
+        {/* Content */}
+        <div className="relative z-10">
+          <h2
+            className="text-4xl font-semibold mb-4 text-white drop-shadow-lg "
+            style={{ WebkitTextStroke: "1px black" }}
+          >
+            Ready to Transform Your Business?
+          </h2>
+          <p className="text-lg mb-6 text-white drop-shadow-lg">
+            Get started with Datalyst today and unlock the power of data.
+          </p>
+          <Link to={"/Contact"}>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              className="bg-gradient-to-r from-blue-500 via-purple-400 to-indigo-500 text-white px-6 py-3 rounded-lg font-semibold"
+            >
+              Contact Us Now
+            </motion.button>
+          </Link>
+        </div>
       </motion.div>
     </div>
   );
